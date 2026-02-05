@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Year - TechPath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --secondary: #d97706;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .year-hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(245, 158, 11, 0.05), rgba(217, 119, 6, 0.05));
+        }
+
+        .year-hero h2 {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .year-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+
+        .subjects-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-card h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .resource-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .resource-links li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .resource-links li:hover {
+            background: var(--light);
+            padding-left: 10px;
+            color: var(--primary);
+        }
+
+        .resource-links li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .specialization-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .track-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--light-gray);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .track-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .track-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .track-roadmap {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .roadmap-step {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .certifications-section {
+            padding: 4rem 0;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .free-badge, .paid-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .free-badge {
+            background: #10b981;
+            color: white;
+        }
+
+        .paid-badge {
+            background: #f59e0b;
+            color: white;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .year-hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .track-grid, .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-robot"></i>
+                        <div class="logo-text">
+                            <h1>TechPath</h1>
+                            <p>Third Year Roadmap</p>
+                        </div>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="year-hero">
+        <div class="container">
+            <h2>Third Year Complete Roadmap</h2>
+            <p>Specialize in AI, Deep Learning, Computer Vision and choose your career track. Build advanced projects and prepare for placements.</p>
+        </div>
+    </section>
+
+    <section class="subjects-section">
+        <div class="container">
+            <h2 class="section-title">Specialization Subjects & Resources</h2>
+            <div class="subjects-grid">
+                <!-- Artificial Intelligence -->
+                <div class="subject-card">
+                    <h3>Artificial Intelligence</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=artificial+intelligence+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube AI Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/artificial-intelligence/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks AI
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/ai/ai_intro.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools AI
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105077', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL AI Course
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/artificial-intelligence/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp AI
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Computer Vision -->
+                <div class="subject-card">
+                    <h3>Computer Vision</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=computer+vision+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube CV Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/computer-vision-tutorial/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks CV
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/ai/ai_computervision.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools CV
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105224', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL CV Course
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/computer-vision/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp CV
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Deep Learning -->
+                <div class="subject-card">
+                    <h3>Deep Learning</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=deep+learning+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube DL Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/deep-learning-tutorial/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks DL
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/ai/ai_neural_networks.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools Neural Nets
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106106184', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL DL Course
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/deep-learning/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp DL
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Computer Networks -->
+                <div class="subject-card">
+                    <h3>Computer Networks</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=computer+networks+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Networks Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/computer-network-tutorials/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks Networks
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/whatis/whatis_networking.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools Networking
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105081', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL Networks
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/computer-networks-and-how-to-actually-understand-them/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Networks
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Design & Analysis of Algorithms -->
+                <div class="subject-card">
+                    <h3>DAA</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=design+and+analysis+of+algorithms+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube DAA Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/fundamentals-of-algorithms/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks Algorithms
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106101060', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL DAA
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Embedded AI -->
+                <div class="subject-card">
+                    <h3>Embedded AI</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=embedded+ai+machine+learning', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Embedded AI
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/embedded-systems/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks Embedded
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/108102045', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL Embedded
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/embedded-systems-engineering/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Embedded
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="specialization-section">
+                <h2 class="section-title">AI Career Specialization Tracks</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">Choose your career path and follow the roadmap</p>
+                
+                <div class="track-grid">
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=machine+learning+engineer+roadmap', '_blank')">
+                        <h4><i class="fas fa-brain"></i> Machine Learning Engineer</h4>
+                        <p>Build, deploy, and maintain ML models in production.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. Advanced ML Algorithms</div>
+                            <div class="roadmap-step">2. ML Ops & Deployment</div>
+                            <div class="roadmap-step">3. Cloud Platforms (AWS/GCP/Azure)</div>
+                            <div class="roadmap-step">4. Real-time Systems</div>
+                        </div>
+                    </div>
+                    
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=data+scientist+roadmap', '_blank')">
+                        <h4><i class="fas fa-chart-line"></i> Data Scientist</h4>
+                        <p>Analyze data, build models, and drive insights.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. Statistics & Probability</div>
+                            <div class="roadmap-step">2. Data Visualization</div>
+                            <div class="roadmap-step">3. Predictive Modeling</div>
+                            <div class="roadmap-step">4. Business Intelligence</div>
+                        </div>
+                    </div>
+                    
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=ai+research+scientist+roadmap', '_blank')">
+                        <h4><i class="fas fa-flask"></i> AI Research Scientist</h4>
+                        <p>Conduct cutting-edge research in AI/ML.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. Research Methodology</div>
+                            <div class="roadmap-step">2. Paper Reading & Writing</div>
+                            <div class="roadmap-step">3. Advanced Mathematics</div>
+                            <div class="roadmap-step">4. Experimental Design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=computer+vision+engineer+roadmap', '_blank')">
+                        <h4><i class="fas fa-eye"></i> Computer Vision Engineer</h4>
+                        <p>Develop vision-based AI systems and applications.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. Image Processing</div>
+                            <div class="roadmap-step">2. CNN Architectures</div>
+                            <div class="roadmap-step">3. Object Detection</div>
+                            <div class="roadmap-step">4. Video Analytics</div>
+                        </div>
+                    </div>
+                    
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=nlp+engineer+roadmap', '_blank')">
+                        <h4><i class="fas fa-language"></i> NLP Engineer</h4>
+                        <p>Work on language models and text processing.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. Linguistics Basics</div>
+                            <div class="roadmap-step">2. Transformers & BERT</div>
+                            <div class="roadmap-step">3. Text Generation</div>
+                            <div class="roadmap-step">4. Speech Processing</div>
+                        </div>
+                    </div>
+                    
+                    <div class="track-card" onclick="window.open('https://www.youtube.com/results?search_query=mlops+engineer+roadmap', '_blank')">
+                        <h4><i class="fas fa-cogs"></i> MLOps Engineer</h4>
+                        <p>Manage ML lifecycle and infrastructure.</p>
+                        <div class="track-roadmap">
+                            <div class="roadmap-step">1. DevOps Fundamentals</div>
+                            <div class="roadmap-step">2. CI/CD for ML</div>
+                            <div class="roadmap-step">3. Model Monitoring</div>
+                            <div class="roadmap-step">4. Scalable Infrastructure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications-section">
+                <h2 class="section-title">Recommended Certifications</h2>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>Free Certifications <span class="free-badge">FREE</span></h4>
+                        <ul style="list-style: none; margin-bottom: 1.5rem;">
+                            <li onclick="window.open('https://www.coursera.org/specializations/natural-language-processing', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
+                                <i class="fas fa-external-link-alt"></i> NLP Specialization
+                            </li>
+                            <li onclick="window.open('https://www.coursera.org/learn/computer-vision-basics', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
+                                <i class="fas fa-external-link-alt"></i> Computer Vision Basics
+                            </li>
+                            <li onclick="window.open('https://www.coursera.org/specializations/reinforcement-learning', '_blank')" style="padding: 0.8rem 0; cursor: pointer;">
+                                <i class="fas fa-external-link-alt"></i> Reinforcement Learning
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cert-card">
+                        <h4>Paid Certifications <span class="paid-badge">PAID</span></h4>
+                        <ul style="list-style: none; margin-bottom: 1.5rem;">
+                            <li onclick="window.open('https://aws.amazon.com/certification/certified-machine-learning-specialty/', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
+                                <i class="fas fa-external-link-alt"></i> AWS ML Specialty
+                            </li>
+                            <li onclick="window.open('https://learn.microsoft.com/en-us/certifications/azure-ai-engineer/', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
+                                <i class="fas fa-external-link-alt"></i> Azure AI Engineer
+                            </li>
+                            <li onclick="window.open('https://www.nvidia.com/en-us/training/', '_blank')" style="padding: 0.8rem 0; cursor: pointer;">
+                                <i class="fas fa-external-link-alt"></i> NVIDIA DLI Certifications
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TechPath - Third Year Roadmap</p>
+            <p style="margin-top: 1rem; color: #94a3b8;">Click on any resource link to access free learning materials</p>
+        </div>
+    </footer>
+
+    <script>
+        // Make all cards clickable
+        document.querySelectorAll('.resource-links li, .track-card').forEach(item => {
+            item.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>

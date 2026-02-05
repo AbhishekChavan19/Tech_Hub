@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Year - TechPath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .year-hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(59, 130, 246, 0.05), rgba(37, 99, 235, 0.05));
+        }
+
+        .year-hero h2 {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .year-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+
+        .subjects-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-card h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .resource-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .resource-links li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .resource-links li:hover {
+            background: var(--light);
+            padding-left: 10px;
+            color: var(--primary);
+        }
+
+        .resource-links li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .certifications-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--light-gray);
+        }
+
+        .cert-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .cert-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .cert-card li:hover {
+            color: var(--primary);
+        }
+
+        .free-badge, .paid-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .free-badge {
+            background: #10b981;
+            color: white;
+        }
+
+        .paid-badge {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .roadmap-section {
+            padding: 4rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .timeline-item h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .year-hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-robot"></i>
+                        <div class="logo-text">
+                            <h1>TechPath</h1>
+                            <p>First Year Roadmap</p>
+                        </div>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="year-hero">
+        <div class="container">
+            <h2>First Year Complete Roadmap</h2>
+            <p>Master the fundamentals of programming, data science, and software engineering. Build a strong foundation for your AI/ML journey.</p>
+        </div>
+    </section>
+
+    <section class="subjects-section">
+        <div class="container">
+            <h2 class="section-title">Core Subjects & Resources</h2>
+            <div class="subjects-grid">
+                <!-- C Programming -->
+                <div class="subject-card">
+                    <h3>C Programming</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=C+programming+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Full Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/c-programming-language/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks Tutorials
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/c/', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools Guide
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105085', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL (IIT Kharagpur)
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/what-is-the-c-programming-language-beginner-tutorial/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Guide
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Data Science -->
+                <div class="subject-card">
+                    <h3>Data Science Basics</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=data+science+for+beginners+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Tutorials
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/data-science-tutorial/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks Guide
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/datascience/', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools DS Course
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106106179', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL Data Science
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/data-science/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Articles
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- OOP using C++ -->
+                <div class="subject-card">
+                    <h3>OOP using C++</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=object+oriented+programming+c+++full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Full Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks OOP
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/cpp/cpp_oop.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools OOP Guide
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105151', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL C++ Programming
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/object-oriented-programming-concepts/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Concepts
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Software Engineering -->
+                <div class="subject-card">
+                    <h3>Software Engineering</h3>
+                    <ul class="resource-links">
+                        <li onclick="window.open('https://www.youtube.com/results?search_query=software+engineering+full+course', '_blank')">
+                            <i class="fab fa-youtube"></i> YouTube Course
+                        </li>
+                        <li onclick="window.open('https://www.geeksforgeeks.org/software-engineering/', '_blank')">
+                            <i class="fas fa-book"></i> GeeksforGeeks SE
+                        </li>
+                        <li onclick="window.open('https://www.w3schools.com/whatis/whatis_software_engineering.asp', '_blank')">
+                            <i class="fas fa-graduation-cap"></i> W3Schools Guide
+                        </li>
+                        <li onclick="window.open('https://nptel.ac.in/courses/106105182', '_blank')">
+                            <i class="fas fa-university"></i> NPTEL Software Engg
+                        </li>
+                        <li onclick="window.open('https://www.freecodecamp.org/news/software-engineering-for-beginners/', '_blank')">
+                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Basics
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="certifications-section">
+                <h2 class="section-title">Recommended Certifications</h2>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>Free Certifications <span class="free-badge">FREE</span></h4>
+                        <ul>
+                            <li onclick="window.open('https://www.coursera.org/specializations/python', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> Python for Everybody (Coursera)
+                            </li>
+                            <li onclick="window.open('https://www.edx.org/course/cs50s-introduction-to-computer-science', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> CS50 Intro to CS (edX)
+                            </li>
+                            <li onclick="window.open('https://www.coursera.org/professional-certificates/google-it-automation', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> Google IT Automation (Coursera)
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cert-card">
+                        <h4>Paid Certifications <span class="paid-badge">PAID</span></h4>
+                        <ul>
+                            <li onclick="window.open('https://aws.amazon.com/certification/certified-cloud-practitioner/', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> AWS Cloud Practitioner
+                            </li>
+                            <li onclick="window.open('https://learn.microsoft.com/en-us/certifications/azure-ai-fundamentals/', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> Microsoft Azure AI-900
+                            </li>
+                            <li onclick="window.open('https://www.udemy.com/course/c-programming-for-beginners-/', '_blank')">
+                                <i class="fas fa-external-link-alt"></i> C Programming Masterclass (Udemy)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-section">
+                <h2 class="section-title">First Year Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Semester 1 (Aug - Dec)</h4>
+                        <p>• Master C Programming fundamentals<br>
+                           • Learn basic mathematics for CS<br>
+                           • Start Python programming basics<br>
+                           • Build simple console applications<br>
+                           • Join coding clubs and communities</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Winter Break (Dec - Jan)</h4>
+                        <p>• Complete 1 free certification course<br>
+                           • Build 2-3 small projects<br>
+                           • Learn version control with Git<br>
+                           • Explore basic data science concepts</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Semester 2 (Jan - May)</h4>
+                        <p>• Learn OOP concepts with C++<br>
+                           • Study software engineering principles<br>
+                           • Practice data structures basics<br>
+                           • Start mathematics for AI/ML<br>
+                           • Build intermediate projects</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4>Summer Break (May - Jul)</h4>
+                        <p>• Complete advanced Python course<br>
+                           • Build portfolio website<br>
+                           • Contribute to open source<br>
+                           • Prepare for second year<br>
+                           • Start DSA practice</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TechPath - First Year Roadmap</p>
+            <p style="margin-top: 1rem; color: #94a3b8;">Click on any resource link to access free learning materials</p>
+        </div>
+    </footer>
+
+    <script>
+        // Make all resource links clickable
+        document.querySelectorAll('.resource-links li').forEach(li => {
+            li.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>

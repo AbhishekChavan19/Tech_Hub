@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPath - B.Tech CSE (AI/ML) Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1d4ed8;
+            --accent: #3b82f6;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header with animated background */
+        header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: gradientShift 10s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, #fff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Video Animation */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(37, 99, 235, 0.3); }
+            to { text-shadow: 0 0 20px rgba(37, 99, 235, 0.6); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--gray);
+        }
+
+        .hero-video {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .video-placeholder {
+            background: var(--gradient-3);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: white;
+        }
+
+        .play-btn i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Year Cards Section */
+        .year-cards {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .year-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        .year-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .year-card:nth-child(1) { border-top: 6px solid #3b82f6; }
+        .year-card:nth-child(2) { border-top: 6px solid #10b981; }
+        .year-card:nth-child(3) { border-top: 6px solid #f59e0b; }
+        .year-card:nth-child(4) { border-top: 6px solid #8b5cf6; }
+
+        .card-header {
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .year-card:nth-child(1) .card-header { background: var(--gradient-1); }
+        .year-card:nth-child(2) .card-header { background: linear-gradient(135deg, #10b981, #059669); }
+        .year-card:nth-child(3) .card-header { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .year-card:nth-child(4) .card-header { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+        .card-header i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card-header h3 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .features-list li:hover {
+            background: var(--light);
+            padding-left: 10px;
+        }
+
+        .features-list li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            background: var(--secondary);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        /* Modal for Resume Builder */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--gray);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content h2 {
+                font-size: 2.8rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .video-placeholder {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .stats {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>TechPath</h1>
+                        <p>B.Tech CSE (AI/ML) Portal</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#years">Year Roadmaps</a></li>
+                        <li><a href="#resume" id="resumeBtn">Resume Builder</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Your Complete B.Tech CSE (AI/ML) Journey</h2>
+                <p>From first year foundations to fourth year placements - Get comprehensive guidance, resources, and roadmap for each year of your B.Tech journey.</p>
+                <a href="#years" class="btn" style="width: auto; display: inline-block;">Explore Roadmaps</a>
+            </div>
+            
+            <div class="hero-video">
+                <div class="video-placeholder">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div style="position: relative; z-index: 1;">
+                        <h3 style="color: white; margin-bottom: 1rem;">Welcome to TechPath</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9);">Your AI/ML journey starts here!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Year Cards Section -->
+    <section id="years" class="year-cards">
+        <div class="container">
+            <h2 class="section-title">Year-Wise Complete Roadmaps</h2>
+            <p style="text-align: center; margin-bottom: 4rem; font-size: 1.2rem; color: var(--gray); max-width: 900px; margin-left: auto; margin-right: auto;">
+                Click on any year to explore detailed subjects, certifications, projects, and placement guidance specific to that academic year.
+            </p>
+            
+            <div class="cards-container">
+                <!-- First Year Card -->
+                <div class="year-card">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>First Year</h3>
+                        <p>Foundation Building Phase</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li onclick="window.open('https://www.youtube.com/results?search_query=C+Programming+tutorial+full+course', '_blank')">
+                                <i class="fas fa-play-circle"></i>C Programming
+                            </li>
+                            <li onclick="window.open('https://www.geeksforgeeks.org/data-science-tutorial/', '_blank')">
+                                <i class="fas fa-database"></i>Data Science Basics
+                            </li>
+                            <li onclick="window.open('https://www.w3schools.com/cpp/cpp_oop.asp', '_blank')">
+                                <i class="fas fa-cogs"></i>OOP using C++
+                            </li>
+                            <li onclick="window.open('https://www.freecodecamp.org/news/software-engineering/', '_blank')">
+                                <i class="fas fa-laptop-code"></i>Software Engineering
+                            </li>
+                            <li onclick="showCertificates(1)">
+                                <i class="fas fa-certificate"></i>Certifications Guide
+                            </li>
+                        </ul>
+                        <a href="first-year.html" class="btn">View Full Roadmap</a>
+                    </div>
+                </div>
+                
+                <!-- Second Year Card -->
+                <div class="year-card">
+                    <div class="card-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Second Year</h3>
+                        <p>Core Development Phase</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li onclick="window.open('https://www.youtube.com/results?search_query=machine+learning+full+course', '_blank')">
+                                <i class="fas fa-brain"></i>Machine Learning
+                            </li>
+                            <li onclick="window.open('https://www.geeksforgeeks.org/data-structures/', '_blank')">
+                                <i class="fas fa-sitemap"></i>Data Structures & Algorithms
+                            </li>
+                            <li onclick="window.open('https://www.w3schools.com/java/', '_blank')">
+                                <i class="fas fa-coffee"></i>Java Programming
+                            </li>
+                            <li onclick="window.open('https://nptel.ac.in/courses/106106049', '_blank')">
+                                <i class="fas fa-project-diagram"></i>Theory of Computation
+                            </li>
+                            <li onclick="showCareerGuides()">
+                                <i class="fas fa-briefcase"></i>GitHub & LinkedIn Guide
+                            </li>
+                            <li onclick="showCertificates(2)">
+                                <i class="fas fa-certificate"></i>Certifications Guide
+                            </li>
+                        </ul>
+                        <a href="second-year.html" class="btn">View Full Roadmap</a>
+                    </div>
+                </div>
+                
+                <!-- Third Year Card -->
+                <div class="year-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>Third Year</h3>
+                        <p>Specialization Phase</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li onclick="window.open('https://www.youtube.com/results?search_query=artificial+intelligence+full+course', '_blank')">
+                                <i class="fas fa-robot"></i>Artificial Intelligence
+                            </li>
+                            <li onclick="window.open('https://nptel.ac.in/courses/106105081', '_blank')">
+                                <i class="fas fa-network-wired"></i>Computer Networks
+                            </li>
+                            <li onclick="window.open('https://www.geeksforgeeks.org/computer-vision-tutorial/', '_blank')">
+                                <i class="fas fa-eye"></i>Computer Vision
+                            </li>
+                            <li onclick="window.open('https://www.freecodecamp.org/news/deep-learning-full-course/', '_blank')">
+                                <i class="fas fa-layer-group"></i>Deep Learning
+                            </li>
+                            <li onclick="showSpecializationTracks()">
+                                <i class="fas fa-road"></i>AI Career Roadmaps
+                            </li>
+                            <li onclick="showCertificates(3)">
+                                <i class="fas fa-certificate"></i>Certifications Guide
+                            </li>
+                        </ul>
+                        <a href="third-year.html" class="btn">View Full Roadmap</a>
+                    </div>
+                </div>
+                
+                <!-- Fourth Year Card -->
+                <div class="year-card">
+                    <div class="card-header">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Fourth Year</h3>
+                        <p>Placement & Career Phase</p>
+                    </div>
+                    <div class="card-content">
+                        <ul class="features-list">
+                            <li onclick="showPlacementPrep()">
+                                <i class="fas fa-file-alt"></i>Placement Preparation
+                            </li>
+                            <li onclick="window.open('https://www.geeksforgeeks.org/technical-interview-preparation/', '_blank')">
+                                <i class="fas fa-laptop-code"></i>Technical Interview Prep
+                            </li>
+                            <li onclick="window.open('https://www.youtube.com/results?search_query=aptitude+test+preparation+full+course', '_blank')">
+                                <i class="fas fa-calculator"></i>Aptitude Guidance
+                            </li>
+                            <li onclick="showHigherEducation()">
+                                <i class="fas fa-university"></i>Higher Education (30+ Universities)
+                            </li>
+                            <li onclick="window.open('https://www.youtube.com/results?search_query=final+year+major+project+ai+ml', '_blank')">
+                                <i class="fas fa-project-diagram"></i>Final Major Projects
+                            </li>
+                        </ul>
+                        <a href="fourth-year.html" class="btn">View Full Roadmap</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <i class="fas fa-book-open"></i>
+                        <span class="stat-number">50+</span>
+                        <p>Subjects Covered</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-certificate"></i>
+                        <span class="stat-number">100+</span>
+                        <p>Certifications</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="stat-number">200+</span>
+                        <p>Project Ideas</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-university"></i>
+                        <span class="stat-number">30+</span>
+                        <p>Top Universities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Builder Modal -->
+    <div class="modal" id="resumeModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 2rem; color: var(--primary);">Professional Resume Builder</h2>
+            
+            <form id="resumeForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
+                        <input type="text" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                        <input type="email" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
+                        <input type="tel" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Current Year</label>
+                        <select style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;">
+                            <option>First Year</option>
+                            <option>Second Year</option>
+                            <option>Third Year</option>
+                            <option>Fourth Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Education</label>
+                    <textarea style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; min-height: 100px;" placeholder="Enter your educational details..."></textarea>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Skills (comma separated)</label>
+                    <input type="text" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" placeholder="Python, Machine Learning, DSA, ...">
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Projects</label>
+                    <textarea style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; min-height: 120px;" placeholder="Describe your projects..."></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button type="button" onclick="generateResume()" class="btn" style="width: auto;">Generate Resume</button>
+                    <button type="button" onclick="downloadResume()" class="btn" style="width: auto; background: var(--accent);">Download PDF</button>
+                </div>
+            </form>
+
+            <div id="resumePreview" style="margin-top: 3rem; display: none;">
+                <h3>Resume Preview</h3>
+                <div style="background: white; border: 2px solid var(--light-gray); border-radius: 10px; padding: 2rem; margin-top: 1rem;">
+                    <!-- Resume preview will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechPath Portal</h3>
+                    <p>Your comprehensive guide for B.Tech CSE (AI/ML) journey with year-wise roadmaps, certifications, and placement guidance.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="first-year.html"><i class="fas fa-arrow-right"></i> First Year Roadmap</a></li>
+                        <li><a href="second-year.html"><i class="fas fa-arrow-right"></i> Second Year Roadmap</a></li>
+                        <li><a href="third-year.html"><i class="fas fa-arrow-right"></i> Third Year Roadmap</a></li>
+                        <li><a href="fourth-year.html"><i class="fas fa-arrow-right"></i> Fourth Year Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#" onclick="showCertificates(1)"><i class="fas fa-certificate"></i> Certifications</a></li>
+                        <li><a href="#" onclick="showPlacementPrep()"><i class="fas fa-briefcase"></i> Placement Prep</a></li>
+                        <li><a href="#" onclick="showHigherEducation()"><i class="fas fa-university"></i> Higher Education</a></li>
+                        <li><a href="#" id="resumeBtn2"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><a href="mailto:info@techpath.edu"><i class="fas fa-envelope"></i> info@techpath.edu</a></li>
+                        <li><a href="#"><i class="fas fa-globe"></i> www.techpath.edu</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +91 9876543210</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Computer Science Department</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TechPath - B.Tech CSE (AI/ML) Portal. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">Designed for Engineering Students | Educational Guide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#home' || targetId === '#years' || targetId === '#contact') {
+                    const targetElement = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Resume Builder Modal
+        const resumeModal = document.getElementById('resumeModal');
+        const resumeBtn = document.getElementById('resumeBtn');
+        const resumeBtn2 = document.getElementById('resumeBtn2');
+        const closeModal = document.getElementById('closeModal');
+        
+        resumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.style.display = 'flex';
+        });
+        
+        resumeBtn2.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            resumeModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if(e.target === resumeModal) {
+                resumeModal.style.display = 'none';
+            }
+        });
+        
+        // Show Certificates for specific year
+        function showCertificates(year) {
+            const certificates = {
+                1: {
+                    free: [
+                        {name: "Python for Everybody", link: "https://www.coursera.org/specializations/python"},
+                        {name: "CS50's Intro to CS", link: "https://www.edx.org/course/cs50s-introduction-to-computer-science"},
+                        {name: "Google IT Automation", link: "https://www.coursera.org/professional-certificates/google-it-automation"}
+                    ],
+                    paid: [
+                        {name: "AWS Cloud Practitioner", link: "https://aws.amazon.com/certification/certified-cloud-practitioner/"},
+                        {name: "Microsoft Azure AI-900", link: "https://learn.microsoft.com/en-us/certifications/azure-ai-fundamentals/"}
+                    ]
+                },
+                2: {
+                    free: [
+                        {name: "Machine Learning by Andrew Ng", link: "https://www.coursera.org/learn/machine-learning"},
+                        {name: "IBM Data Science", link: "https://www.coursera.org/professional-certificates/ibm-data-science"},
+                        {name: "Deep Learning Specialization", link: "https://www.coursera.org/specializations/deep-learning"}
+                    ],
+                    paid: [
+                        {name: "AWS Machine Learning", link: "https://aws.amazon.com/certification/certified-machine-learning-specialty/"},
+                        {name: "TensorFlow Developer", link: "https://www.tensorflow.org/certificate"}
+                    ]
+                },
+                3: {
+                    free: [
+                        {name: "NLP Specialization", link: "https://www.coursera.org/specializations/natural-language-processing"},
+                        {name: "Computer Vision Basics", link: "https://www.coursera.org/learn/computer-vision-basics"},
+                        {name: "Reinforcement Learning", link: "https://www.coursera.org/specializations/reinforcement-learning"}
+                    ],
+                    paid: [
+                        {name: "AWS AI Engineer", link: "https://aws.amazon.com/certification/certified-machine-learning-specialty/"},
+                        {name: "Azure AI Engineer", link: "https://learn.microsoft.com/en-us/certifications/azure-ai-engineer/"},
+                        {name: "NVIDIA DLI Certifications", link: "https://www.nvidia.com/en-in/training/"}
+                    ]
+                }
+            };
+            
+            const yearCerts = certificates[year];
+            let message = `Year ${year} Certifications:\n\nFREE:\n`;
+            yearCerts.free.forEach(cert => {
+                message += `• ${cert.name}\n`;
+            });
+            message += "\nPAID (Recommended):\n";
+            yearCerts.paid.forEach(cert => {
+                message += `• ${cert.name}\n`;
+            });
+            message += "\nClick OK to view detailed information.";
+            
+            if(confirm(message)) {
+                // Open first free certificate
+                window.open(yearCerts.free[0].link, '_blank');
+            }
+        }
+        
+        // Show Career Guides
+        function showCareerGuides() {
+            const guides = [
+                {name: "GitHub Profile Building", link: "https://www.youtube.com/results?search_query=github+profile+building+for+students"},
+                {name: "LinkedIn Optimization", link: "https://www.youtube.com/results?search_query=linkedin+profile+optimization+for+students"},
+                {name: "Developer Portfolio", link: "https://www.youtube.com/results?search_query=developer+portfolio+building"},
+                {name: "Open Source Contribution", link: "https://www.youtube.com/results?search_query=open+source+contribution+for+beginners"}
+            ];
+            
+            let message = "Career Development Guides:\n\n";
+            guides.forEach((guide, index) => {
+                message += `${index + 1}. ${guide.name}\n`;
+            });
+            message += "\nClick OK to view the first guide.";
+            
+            if(confirm(message)) {
+                window.open(guides[0].link, '_blank');
+            }
+        }
+        
+        // Show Specialization Tracks
+        function showSpecializationTracks() {
+            const tracks = [
+                "Machine Learning Engineer",
+                "Data Scientist",
+                "AI Research Scientist",
+                "Computer Vision Engineer",
+                "NLP Engineer",
+                "MLOps Engineer",
+                "AI Product Manager"
+            ];
+            
+            let message = "AI Career Specialization Tracks:\n\n";
+            tracks.forEach((track, index) => {
+                message += `${index + 1}. ${track}\n`;
+            });
+            message += "\nClick OK to view sample roadmap for ML Engineer.";
+            
+            if(confirm(message)) {
+                window.open('https://www.youtube.com/results?search_query=machine+learning+engineer+roadmap+2023', '_blank');
+            }
+        }
+        
+        // Show Placement Preparation
+        function showPlacementPrep() {
+            const prepResources = [
+                {name: "Aptitude Test Preparation", link: "https://www.youtube.com/results?search_query=aptitude+test+preparation+full+course"},
+                {name: "Technical Interview Questions", link: "https://www.geeksforgeeks.org/technical-interview-preparation/"},
+                {name: "Coding Interview Prep", link: "https://www.youtube.com/results?search_query=coding+interview+preparation"},
+                {name: "System Design Interview", link: "https://www.youtube.com/results?search_query=system+design+interview+preparation"},
+                {name: "Behavioral Interview Prep", link: "https://www.youtube.com/results?search_query=behavioral+interview+questions+and+answers"}
+            ];
+            
+            let message = "Placement Preparation Resources:\n\n";
+            prepResources.forEach((resource, index) => {
+                message += `${index + 1}. ${resource.name}\n`;
+            });
+            message += "\nClick OK to view Aptitude Preparation.";
+            
+            if(confirm(message)) {
+                window.open(prepResources[0].link, '_blank');
+            }
+        }
+        
+        // Show Higher Education
+        function showHigherEducation() {
+            const universities = [
+                "Massachusetts Institute of Technology (MIT)",
+                "Stanford University",
+                "Carnegie Mellon University",
+                "University of California, Berkeley",
+                "University of Washington",
+                "Georgia Institute of Technology",
+                "University of Illinois Urbana-Champaign",
+                "University of Texas at Austin",
+                "University of Michigan",
+                "Cornell University",
+                "California Institute of Technology",
+                "University of Toronto",
+                "University of Cambridge",
+                "University of Oxford",
+                "ETH Zurich",
+                "National University of Singapore",
+                "University of Edinburgh",
+                "University of Melbourne",
+                "Technical University of Munich",
+                "University of British Columbia",
+                "IIT Delhi",
+                "IIT Bombay",
+                "IIT Madras",
+                "IIT Kharagpur",
+                "IISc Bangalore",
+                "IIIT Hyderabad",
+                "BITS Pilani",
+                "University of Southern California",
+                "University of California, Los Angeles",
+                "New York University"
+            ];
+            
+            let message = "Top 30 Universities for AI/ML:\n\n";
+            universities.slice(0, 10).forEach((uni, index) => {
+                message += `${index + 1}. ${uni}\n`;
+            });
+            message += "\n... and 20 more top universities\n\nClick OK to view detailed information.";
+            
+            if(confirm(message)) {
+                window.open('https://www.usnews.com/education/best-global-universities/artificial-intelligence', '_blank');
+            }
+        }
+        
+        // Generate Resume
+        function generateResume() {
+            const form = document.getElementById('resumeForm');
+            const preview = document.getElementById('resumePreview');
+            
+            if(form.checkValidity()) {
+                preview.style.display = 'block';
+                alert('Resume generated successfully! Click "Download PDF" to save your resume.');
+            } else {
+                alert('Please fill in all required fields marked with *');
+            }
+        }
+        
+        // Download Resume
+        function downloadResume() {
+            alert('Resume downloaded as PDF! In a complete implementation, this would generate and download a PDF file.');
+            // In actual implementation, use jsPDF library to generate PDF
+        }
+        
+        // Video play button
+        document.querySelector('.play-btn').addEventListener('click', function() {
+            alert('In a complete implementation, this would play an intro video about the portal.');
+        });
+        
+        // Stats counter animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if(current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + '+';
+                }, 50);
+            });
+        });
+    </script>
+</body>
+</html>
