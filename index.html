@@ -1,1185 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPath - B.Tech CSE (AI/ML) Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #1d4ed8;
-            --accent: #3b82f6;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-        }
-
-        /* Header with animated background */
-        header {
-            background: var(--gradient-1);
-            color: white;
-            padding: 1.5rem 0;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            animation: gradientShift 10s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            font-size: 2.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .logo-text h1 {
-            font-size: 2rem;
-            background: linear-gradient(to right, #fff, #c7d2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .logo-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after, nav a.active::after {
-            width: 100%;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section with Video Animation */
-        .hero {
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-2);
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .hero-content h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from { text-shadow: 0 0 10px rgba(37, 99, 235, 0.3); }
-            to { text-shadow: 0 0 20px rgba(37, 99, 235, 0.6); }
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: var(--gray);
-        }
-
-        .hero-video {
-            max-width: 900px;
-            margin: 3rem auto 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-
-        .video-placeholder {
-            background: var(--gradient-3);
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.9);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-btn:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: white;
-        }
-
-        .play-btn i {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-left: 5px;
-        }
-
-        /* Year Cards Section */
-        .year-cards {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 4rem;
-            color: var(--dark);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-1);
-            border-radius: 2px;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 5rem;
-        }
-
-        .year-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            transform: translateY(0);
-            position: relative;
-        }
-
-        .year-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .year-card:nth-child(1) { border-top: 6px solid #3b82f6; }
-        .year-card:nth-child(2) { border-top: 6px solid #10b981; }
-        .year-card:nth-child(3) { border-top: 6px solid #f59e0b; }
-        .year-card:nth-child(4) { border-top: 6px solid #8b5cf6; }
-
-        .card-header {
-            padding: 2rem;
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .year-card:nth-child(1) .card-header { background: var(--gradient-1); }
-        .year-card:nth-child(2) .card-header { background: linear-gradient(135deg, #10b981, #059669); }
-        .year-card:nth-child(3) .card-header { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .year-card:nth-child(4) .card-header { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-
-        .card-header i {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .card-header h3 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-content {
-            padding: 2rem;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .features-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .features-list li:hover {
-            background: var(--light);
-            padding-left: 10px;
-        }
-
-        .features-list li i {
-            color: var(--primary);
-            font-size: 1.2rem;
-            width: 24px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1rem;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-            background: var(--secondary);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 4rem auto;
-            max-width: 1200px;
-            box-shadow: var(--shadow);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray);
-        }
-
-        /* Modal for Resume Builder */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 3rem;
-            position: relative;
-            animation: modalSlide 0.3s ease;
-        }
-
-        @keyframes modalSlide {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 2rem;
-            color: var(--gray);
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content h2 {
-                font-size: 2.8rem;
-            }
-            
-            .cards-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: fixed;
-                top: 90px;
-                left: 0;
-                width: 100%;
-                background: var(--dark);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-                box-shadow: var(--shadow);
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero-content h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .video-placeholder {
-                height: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 4rem 0;
-            }
-            
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .card-content {
-                padding: 1.5rem;
-            }
-            
-            .modal-content {
-                padding: 2rem 1.5rem;
-            }
-            
-            .stats {
-                padding: 2rem 1.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <meta name="description" content="AI Engineering Roadmap – Master Artificial Intelligence from First Year to Placement">
+  <title>AI Engineering Roadmap | TechPath</title>
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/32/3b82f6/ffffff?text=AI">
+  <!-- Google Fonts: Poppins + Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>TechPath</h1>
-                        <p>B.Tech CSE (AI/ML) Portal</p>
-                    </div>
-                </div>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <nav>
-                    <ul id="navMenu">
-                        <li><a href="#home" class="active">Home</a></li>
-                        <li><a href="#years">Year Roadmaps</a></li>
-                        <li><a href="#resume" id="resumeBtn">Resume Builder</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <!-- CANVAS BACKGROUND (AI NEURAL NETWORK ANIMATION) -->
+  <canvas id="neural-canvas" class="neural-bg" aria-hidden="true"></canvas>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h2>Your Complete B.Tech CSE (AI/ML) Journey</h2>
-                <p>From first year foundations to fourth year placements - Get comprehensive guidance, resources, and roadmap for each year of your B.Tech journey.</p>
-                <a href="#years" class="btn" style="width: auto; display: inline-block;">Explore Roadmaps</a>
-            </div>
-            
-            <div class="hero-video">
-                <div class="video-placeholder">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div style="position: relative; z-index: 1;">
-                        <h3 style="color: white; margin-bottom: 1rem;">Welcome to TechPath</h3>
-                        <p style="color: rgba(255, 255, 255, 0.9);">Your AI/ML journey starts here!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Year Cards Section -->
-    <section id="years" class="year-cards">
-        <div class="container">
-            <h2 class="section-title">Year-Wise Complete Roadmaps</h2>
-            <p style="text-align: center; margin-bottom: 4rem; font-size: 1.2rem; color: var(--gray); max-width: 900px; margin-left: auto; margin-right: auto;">
-                Click on any year to explore detailed subjects, certifications, projects, and placement guidance specific to that academic year.
-            </p>
-            
-            <div class="cards-container">
-                <!-- First Year Card -->
-                <div class="year-card">
-                    <div class="card-header">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>First Year</h3>
-                        <p>Foundation Building Phase</p>
-                    </div>
-                    <div class="card-content">
-                        <ul class="features-list">
-                            <li onclick="window.open('https://www.youtube.com/results?search_query=C+Programming+tutorial+full+course', '_blank')">
-                                <i class="fas fa-play-circle"></i>C Programming
-                            </li>
-                            <li onclick="window.open('https://www.geeksforgeeks.org/data-science-tutorial/', '_blank')">
-                                <i class="fas fa-database"></i>Data Science Basics
-                            </li>
-                            <li onclick="window.open('https://www.w3schools.com/cpp/cpp_oop.asp', '_blank')">
-                                <i class="fas fa-cogs"></i>OOP using C++
-                            </li>
-                            <li onclick="window.open('https://www.freecodecamp.org/news/software-engineering/', '_blank')">
-                                <i class="fas fa-laptop-code"></i>Software Engineering
-                            </li>
-                            <li onclick="showCertificates(1)">
-                                <i class="fas fa-certificate"></i>Certifications Guide
-                            </li>
-                        </ul>
-                        <a href="first-year.html" class="btn">View Full Roadmap</a>
-                    </div>
-                </div>
-                
-                <!-- Second Year Card -->
-                <div class="year-card">
-                    <div class="card-header">
-                        <i class="fas fa-code"></i>
-                        <h3>Second Year</h3>
-                        <p>Core Development Phase</p>
-                    </div>
-                    <div class="card-content">
-                        <ul class="features-list">
-                            <li onclick="window.open('https://www.youtube.com/results?search_query=machine+learning+full+course', '_blank')">
-                                <i class="fas fa-brain"></i>Machine Learning
-                            </li>
-                            <li onclick="window.open('https://www.geeksforgeeks.org/data-structures/', '_blank')">
-                                <i class="fas fa-sitemap"></i>Data Structures & Algorithms
-                            </li>
-                            <li onclick="window.open('https://www.w3schools.com/java/', '_blank')">
-                                <i class="fas fa-coffee"></i>Java Programming
-                            </li>
-                            <li onclick="window.open('https://nptel.ac.in/courses/106106049', '_blank')">
-                                <i class="fas fa-project-diagram"></i>Theory of Computation
-                            </li>
-                            <li onclick="showCareerGuides()">
-                                <i class="fas fa-briefcase"></i>GitHub & LinkedIn Guide
-                            </li>
-                            <li onclick="showCertificates(2)">
-                                <i class="fas fa-certificate"></i>Certifications Guide
-                            </li>
-                        </ul>
-                        <a href="second-year.html" class="btn">View Full Roadmap</a>
-                    </div>
-                </div>
-                
-                <!-- Third Year Card -->
-                <div class="year-card">
-                    <div class="card-header">
-                        <i class="fas fa-brain"></i>
-                        <h3>Third Year</h3>
-                        <p>Specialization Phase</p>
-                    </div>
-                    <div class="card-content">
-                        <ul class="features-list">
-                            <li onclick="window.open('https://www.youtube.com/results?search_query=artificial+intelligence+full+course', '_blank')">
-                                <i class="fas fa-robot"></i>Artificial Intelligence
-                            </li>
-                            <li onclick="window.open('https://nptel.ac.in/courses/106105081', '_blank')">
-                                <i class="fas fa-network-wired"></i>Computer Networks
-                            </li>
-                            <li onclick="window.open('https://www.geeksforgeeks.org/computer-vision-tutorial/', '_blank')">
-                                <i class="fas fa-eye"></i>Computer Vision
-                            </li>
-                            <li onclick="window.open('https://www.freecodecamp.org/news/deep-learning-full-course/', '_blank')">
-                                <i class="fas fa-layer-group"></i>Deep Learning
-                            </li>
-                            <li onclick="showSpecializationTracks()">
-                                <i class="fas fa-road"></i>AI Career Roadmaps
-                            </li>
-                            <li onclick="showCertificates(3)">
-                                <i class="fas fa-certificate"></i>Certifications Guide
-                            </li>
-                        </ul>
-                        <a href="third-year.html" class="btn">View Full Roadmap</a>
-                    </div>
-                </div>
-                
-                <!-- Fourth Year Card -->
-                <div class="year-card">
-                    <div class="card-header">
-                        <i class="fas fa-briefcase"></i>
-                        <h3>Fourth Year</h3>
-                        <p>Placement & Career Phase</p>
-                    </div>
-                    <div class="card-content">
-                        <ul class="features-list">
-                            <li onclick="showPlacementPrep()">
-                                <i class="fas fa-file-alt"></i>Placement Preparation
-                            </li>
-                            <li onclick="window.open('https://www.geeksforgeeks.org/technical-interview-preparation/', '_blank')">
-                                <i class="fas fa-laptop-code"></i>Technical Interview Prep
-                            </li>
-                            <li onclick="window.open('https://www.youtube.com/results?search_query=aptitude+test+preparation+full+course', '_blank')">
-                                <i class="fas fa-calculator"></i>Aptitude Guidance
-                            </li>
-                            <li onclick="showHigherEducation()">
-                                <i class="fas fa-university"></i>Higher Education (30+ Universities)
-                            </li>
-                            <li onclick="window.open('https://www.youtube.com/results?search_query=final+year+major+project+ai+ml', '_blank')">
-                                <i class="fas fa-project-diagram"></i>Final Major Projects
-                            </li>
-                        </ul>
-                        <a href="fourth-year.html" class="btn">View Full Roadmap</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats Section -->
-            <div class="stats">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <i class="fas fa-book-open"></i>
-                        <span class="stat-number">50+</span>
-                        <p>Subjects Covered</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-certificate"></i>
-                        <span class="stat-number">100+</span>
-                        <p>Certifications</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-project-diagram"></i>
-                        <span class="stat-number">200+</span>
-                        <p>Project Ideas</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-university"></i>
-                        <span class="stat-number">30+</span>
-                        <p>Top Universities</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume Builder Modal -->
-    <div class="modal" id="resumeModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <h2 style="margin-bottom: 2rem; color: var(--primary);">Professional Resume Builder</h2>
-            
-            <form id="resumeForm">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                    <div>
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
-                        <input type="text" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
-                        <input type="email" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
-                        <input type="tel" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" required>
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Current Year</label>
-                        <select style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;">
-                            <option>First Year</option>
-                            <option>Second Year</option>
-                            <option>Third Year</option>
-                            <option>Fourth Year</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Education</label>
-                    <textarea style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; min-height: 100px;" placeholder="Enter your educational details..."></textarea>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Skills (comma separated)</label>
-                    <input type="text" style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px;" placeholder="Python, Machine Learning, DSA, ...">
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Projects</label>
-                    <textarea style="width: 100%; padding: 1rem; border: 2px solid var(--light-gray); border-radius: 8px; min-height: 120px;" placeholder="Describe your projects..."></textarea>
-                </div>
-
-                <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button type="button" onclick="generateResume()" class="btn" style="width: auto;">Generate Resume</button>
-                    <button type="button" onclick="downloadResume()" class="btn" style="width: auto; background: var(--accent);">Download PDF</button>
-                </div>
-            </form>
-
-            <div id="resumePreview" style="margin-top: 3rem; display: none;">
-                <h3>Resume Preview</h3>
-                <div style="background: white; border: 2px solid var(--light-gray); border-radius: 10px; padding: 2rem; margin-top: 1rem;">
-                    <!-- Resume preview will be generated here -->
-                </div>
-            </div>
-        </div>
+  <!-- STICKY GLASSMORPHISM HEADER -->
+  <header class="header glass-header">
+    <div class="container header-container">
+      <div class="logo">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <span>TechPath<span class="dot">.</span></span>
+      </div>
+      <!-- Hamburger menu toggle -->
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="navbar" id="navbar">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="first-year.html" class="nav-link">First Year</a></li>
+          <li><a href="second-year.html" class="nav-link">Second Year</a></li>
+          <li><a href="third-year.html" class="nav-link">Third Year</a></li>
+          <li><a href="fourth-year.html" class="nav-link">Fourth Year</a></li>
+          <li><a href="#" class="nav-link" id="resume-trigger">Resume Builder</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>TechPath Portal</h3>
-                    <p>Your comprehensive guide for B.Tech CSE (AI/ML) journey with year-wise roadmaps, certifications, and placement guidance.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="first-year.html"><i class="fas fa-arrow-right"></i> First Year Roadmap</a></li>
-                        <li><a href="second-year.html"><i class="fas fa-arrow-right"></i> Second Year Roadmap</a></li>
-                        <li><a href="third-year.html"><i class="fas fa-arrow-right"></i> Third Year Roadmap</a></li>
-                        <li><a href="fourth-year.html"><i class="fas fa-arrow-right"></i> Fourth Year Roadmap</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#" onclick="showCertificates(1)"><i class="fas fa-certificate"></i> Certifications</a></li>
-                        <li><a href="#" onclick="showPlacementPrep()"><i class="fas fa-briefcase"></i> Placement Prep</a></li>
-                        <li><a href="#" onclick="showHigherEducation()"><i class="fas fa-university"></i> Higher Education</a></li>
-                        <li><a href="#" id="resumeBtn2"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><a href="mailto:info@techpath.edu"><i class="fas fa-envelope"></i> info@techpath.edu</a></li>
-                        <li><a href="#"><i class="fas fa-globe"></i> www.techpath.edu</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i> +91 9876543210</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Computer Science Department</a></li>
-                    </ul>
-                </div>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Master AI Engineering, <br />
+            <span class="gradient-text">One Roadmap at a Time</span>
+          </h1>
+          <p class="hero-subtitle">
+            From freshman fundamentals to placement mastery – your all-in-one EdTech SaaS platform with certificates, guides, and AI-powered tools.
+          </p>
+          <div class="hero-buttons">
+            <a href="first-year.html" class="btn btn-primary btn-glow">Start Learning <i class="fas fa-arrow-right"></i></a>
+            <a href="#roadmaps" class="btn btn-secondary">Explore Roadmaps</a>
+          </div>
+          <!-- Social proof -->
+          <div class="social-proof">
+            <div class="avatar-group">
+              <img src="https://via.placeholder.com/40/1e293b/ffffff?text=U1" alt="User">
+              <img src="https://via.placeholder.com/40/1e293b/ffffff?text=U2" alt="User">
+              <img src="https://via.placeholder.com/40/1e293b/ffffff?text=U3" alt="User">
+              <img src="https://via.placeholder.com/40/1e293b/ffffff?text=U4" alt="User">
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 TechPath - B.Tech CSE (AI/ML) Portal. All rights reserved.</p>
-                <p style="margin-top: 0.5rem;">Designed for Engineering Students | Educational Guide</p>
-            </div>
+          </div>
         </div>
-    </footer>
+        <div class="hero-visual">
+          <i class="fas fa-brain fa-8x"></i>
+        </div>
+      </div>
+    </section>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('show');
-            });
-        });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#home' || targetId === '#years' || targetId === '#contact') {
-                    const targetElement = document.querySelector(targetId);
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Resume Builder Modal
-        const resumeModal = document.getElementById('resumeModal');
-        const resumeBtn = document.getElementById('resumeBtn');
-        const resumeBtn2 = document.getElementById('resumeBtn2');
-        const closeModal = document.getElementById('closeModal');
-        
-        resumeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            resumeModal.style.display = 'flex';
-        });
-        
-        resumeBtn2.addEventListener('click', (e) => {
-            e.preventDefault();
-            resumeModal.style.display = 'flex';
-        });
-        
-        closeModal.addEventListener('click', () => {
-            resumeModal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', (e) => {
-            if(e.target === resumeModal) {
-                resumeModal.style.display = 'none';
-            }
-        });
-        
-        // Show Certificates for specific year
-        function showCertificates(year) {
-            const certificates = {
-                1: {
-                    free: [
-                        {name: "Python for Everybody", link: "https://www.coursera.org/specializations/python"},
-                        {name: "CS50's Intro to CS", link: "https://www.edx.org/course/cs50s-introduction-to-computer-science"},
-                        {name: "Google IT Automation", link: "https://www.coursera.org/professional-certificates/google-it-automation"}
-                    ],
-                    paid: [
-                        {name: "AWS Cloud Practitioner", link: "https://aws.amazon.com/certification/certified-cloud-practitioner/"},
-                        {name: "Microsoft Azure AI-900", link: "https://learn.microsoft.com/en-us/certifications/azure-ai-fundamentals/"}
-                    ]
-                },
-                2: {
-                    free: [
-                        {name: "Machine Learning by Andrew Ng", link: "https://www.coursera.org/learn/machine-learning"},
-                        {name: "IBM Data Science", link: "https://www.coursera.org/professional-certificates/ibm-data-science"},
-                        {name: "Deep Learning Specialization", link: "https://www.coursera.org/specializations/deep-learning"}
-                    ],
-                    paid: [
-                        {name: "AWS Machine Learning", link: "https://aws.amazon.com/certification/certified-machine-learning-specialty/"},
-                        {name: "TensorFlow Developer", link: "https://www.tensorflow.org/certificate"}
-                    ]
-                },
-                3: {
-                    free: [
-                        {name: "NLP Specialization", link: "https://www.coursera.org/specializations/natural-language-processing"},
-                        {name: "Computer Vision Basics", link: "https://www.coursera.org/learn/computer-vision-basics"},
-                        {name: "Reinforcement Learning", link: "https://www.coursera.org/specializations/reinforcement-learning"}
-                    ],
-                    paid: [
-                        {name: "AWS AI Engineer", link: "https://aws.amazon.com/certification/certified-machine-learning-specialty/"},
-                        {name: "Azure AI Engineer", link: "https://learn.microsoft.com/en-us/certifications/azure-ai-engineer/"},
-                        {name: "NVIDIA DLI Certifications", link: "https://www.nvidia.com/en-in/training/"}
-                    ]
-                }
-            };
-            
-            const yearCerts = certificates[year];
-            let message = `Year ${year} Certifications:\n\nFREE:\n`;
-            yearCerts.free.forEach(cert => {
-                message += `• ${cert.name}\n`;
-            });
-            message += "\nPAID (Recommended):\n";
-            yearCerts.paid.forEach(cert => {
-                message += `• ${cert.name}\n`;
-            });
-            message += "\nClick OK to view detailed information.";
-            
-            if(confirm(message)) {
-                // Open first free certificate
-                window.open(yearCerts.free[0].link, '_blank');
-            }
-        }
-        
-        // Show Career Guides
-        function showCareerGuides() {
-            const guides = [
-                {name: "GitHub Profile Building", link: "https://www.youtube.com/results?search_query=github+profile+building+for+students"},
-                {name: "LinkedIn Optimization", link: "https://www.youtube.com/results?search_query=linkedin+profile+optimization+for+students"},
-                {name: "Developer Portfolio", link: "https://www.youtube.com/results?search_query=developer+portfolio+building"},
-                {name: "Open Source Contribution", link: "https://www.youtube.com/results?search_query=open+source+contribution+for+beginners"}
-            ];
-            
-            let message = "Career Development Guides:\n\n";
-            guides.forEach((guide, index) => {
-                message += `${index + 1}. ${guide.name}\n`;
-            });
-            message += "\nClick OK to view the first guide.";
-            
-            if(confirm(message)) {
-                window.open(guides[0].link, '_blank');
-            }
-        }
-        
-        // Show Specialization Tracks
-        function showSpecializationTracks() {
-            const tracks = [
-                "Machine Learning Engineer",
-                "Data Scientist",
-                "AI Research Scientist",
-                "Computer Vision Engineer",
-                "NLP Engineer",
-                "MLOps Engineer",
-                "AI Product Manager"
-            ];
-            
-            let message = "AI Career Specialization Tracks:\n\n";
-            tracks.forEach((track, index) => {
-                message += `${index + 1}. ${track}\n`;
-            });
-            message += "\nClick OK to view sample roadmap for ML Engineer.";
-            
-            if(confirm(message)) {
-                window.open('https://www.youtube.com/results?search_query=machine+learning+engineer+roadmap+2023', '_blank');
-            }
-        }
-        
-        // Show Placement Preparation
-        function showPlacementPrep() {
-            const prepResources = [
-                {name: "Aptitude Test Preparation", link: "https://www.youtube.com/results?search_query=aptitude+test+preparation+full+course"},
-                {name: "Technical Interview Questions", link: "https://www.geeksforgeeks.org/technical-interview-preparation/"},
-                {name: "Coding Interview Prep", link: "https://www.youtube.com/results?search_query=coding+interview+preparation"},
-                {name: "System Design Interview", link: "https://www.youtube.com/results?search_query=system+design+interview+preparation"},
-                {name: "Behavioral Interview Prep", link: "https://www.youtube.com/results?search_query=behavioral+interview+questions+and+answers"}
-            ];
-            
-            let message = "Placement Preparation Resources:\n\n";
-            prepResources.forEach((resource, index) => {
-                message += `${index + 1}. ${resource.name}\n`;
-            });
-            message += "\nClick OK to view Aptitude Preparation.";
-            
-            if(confirm(message)) {
-                window.open(prepResources[0].link, '_blank');
-            }
-        }
-        
-        // Show Higher Education
-        function showHigherEducation() {
-            const universities = [
-                "Massachusetts Institute of Technology (MIT)",
-                "Stanford University",
-                "Carnegie Mellon University",
-                "University of California, Berkeley",
-                "University of Washington",
-                "Georgia Institute of Technology",
-                "University of Illinois Urbana-Champaign",
-                "University of Texas at Austin",
-                "University of Michigan",
-                "Cornell University",
-                "California Institute of Technology",
-                "University of Toronto",
-                "University of Cambridge",
-                "University of Oxford",
-                "ETH Zurich",
-                "National University of Singapore",
-                "University of Edinburgh",
-                "University of Melbourne",
-                "Technical University of Munich",
-                "University of British Columbia",
-                "IIT Delhi",
-                "IIT Bombay",
-                "IIT Madras",
-                "IIT Kharagpur",
-                "IISc Bangalore",
-                "IIIT Hyderabad",
-                "BITS Pilani",
-                "University of Southern California",
-                "University of California, Los Angeles",
-                "New York University"
-            ];
-            
-            let message = "Top 30 Universities for AI/ML:\n\n";
-            universities.slice(0, 10).forEach((uni, index) => {
-                message += `${index + 1}. ${uni}\n`;
-            });
-            message += "\n... and 20 more top universities\n\nClick OK to view detailed information.";
-            
-            if(confirm(message)) {
-                window.open('https://www.usnews.com/education/best-global-universities/artificial-intelligence', '_blank');
-            }
-        }
-        
-        // Generate Resume
-        function generateResume() {
-            const form = document.getElementById('resumeForm');
-            const preview = document.getElementById('resumePreview');
-            
-            if(form.checkValidity()) {
-                preview.style.display = 'block';
-                alert('Resume generated successfully! Click "Download PDF" to save your resume.');
-            } else {
-                alert('Please fill in all required fields marked with *');
-            }
-        }
-        
-        // Download Resume
-        function downloadResume() {
-            alert('Resume downloaded as PDF! In a complete implementation, this would generate and download a PDF file.');
-            // In actual implementation, use jsPDF library to generate PDF
-        }
-        
-        // Video play button
-        document.querySelector('.play-btn').addEventListener('click', function() {
-            alert('In a complete implementation, this would play an intro video about the portal.');
-        });
-        
-        // Stats counter animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if(current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + '+';
-                }, 50);
-            });
-        });
-    </script>
+    <!-- HOW IT WORKS (3-STEP) -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>Your success <span class="gradient-text">blueprint</span></h2>
+          <p>Three simple steps to become an AI engineer</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-icon">1</div>
+            <i class="fas fa-map-signs fa-3x"></i>
+            <h3>Pick your year</h3>
+            <p>Choose from 1st to 4th year – each roadmap is curated by top 1% engineers.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">2</div>
+            <i class="fas fa-certificate fa-3x"></i>
+            <h3>Earn certificates</h3>
+            <p>Every subject includes 6 free/paid certificates. Build verified credentials.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">3</div>
+            <i class="fas fa-file-alt fa-3x"></i>
+            <h3>Craft your resume</h3>
+            <p>Use our AI-powered resume builder, download PDF, impress recruiters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 LARGE ROADMAP CARDS -->
+    <section id="roadmaps" class="roadmaps">
+      <div class="container">
+        <div class="section-header">
+          <h2>Choose your <span class="gradient-text">roadmap</span></h2>
+          <p>Specialized tracks with 50+ subjects & 200+ projects</p>
+        </div>
+        <div class="roadmap-cards">
+          <div class="roadmap-card" data-year="1" style="--year-color: #3b82f6;">
+            <i class="fas fa-code fa-3x"></i>
+            <h3>First Year</h3>
+            <p>C, Python, OOP, Data Science fundamentals</p>
+            <span class="subject-count">4 subjects · 24 certificates</span>
+            <a href="first-year.html" class="card-link">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="roadmap-card" data-year="2" style="--year-color: #10b981;">
+            <i class="fas fa-database fa-3x"></i>
+            <h3>Second Year</h3>
+            <p>ML, DSA, DBMS, Full-stack, career guides</p>
+            <span class="subject-count">7 subjects · 42 certificates</span>
+            <a href="second-year.html" class="card-link">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="roadmap-card" data-year="3" style="--year-color: #f59e0b;">
+            <i class="fas fa-microchip fa-3x"></i>
+            <h3>Third Year</h3>
+            <p>AI, CV, Deep Learning, Embedded AI, 6 career tracks</p>
+            <span class="subject-count">7 subjects · 42 certificates</span>
+            <a href="third-year.html" class="card-link">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="roadmap-card" data-year="4" style="--year-color: #8b5cf6;">
+            <i class="fas fa-briefcase fa-3x"></i>
+            <h3>Fourth Year</h3>
+            <p>Placement prep, System Design, 30+ universities</p>
+            <span class="subject-count">6 prep areas · 30 universities</span>
+            <a href="fourth-year.html" class="card-link">Explore <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6-FEATURE GRID -->
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Everything you need to <span class="gradient-text">succeed</span></h2>
+          <p>Industry-first tools built for aspiring AI engineers</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-item"><i class="fas fa-video"></i><h4>200+ Video lessons</h4><p>Curated YouTube & notes</p></div>
+          <div class="feature-item"><i class="fas fa-certificate"></i><h4>Certificate engine</h4><p>Free & paid certs per subject</p></div>
+          <div class="feature-item"><i class="fas fa-file-pdf"></i><h4>Resume builder</h4><p>ATS-friendly PDF</p></div>
+          <div class="feature-item"><i class="fas fa-university"></i><h4>30 university guides</h4><p>MS/PhD shortlists</p></div>
+          <div class="feature-item"><i class="fas fa-chart-line"></i><h4>Career tracks</h4><p>AI, CV, Embedded AI</p></div>
+          <div class="feature-item"><i class="fas fa-users"></i><h4>Open source guide</h4><p>GitHub & LinkedIn</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANIMATED STATS COUNTERS -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card"><i class="fas fa-book-open"></i><span class="counter" data-target="50">0</span><p>Subjects</p></div>
+          <div class="stat-card"><i class="fas fa-certificate"></i><span class="counter" data-target="100">0</span><p>Certifications</p></div>
+          <div class="stat-card"><i class="fas fa-code-branch"></i><span class="counter" data-target="100">0</span><p>Projects</p></div>
+          <div class="stat-card"><i class="fas fa-university"></i><span class="counter" data-target="30">0</span><p>Universities</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER with Newsletter -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Get weekly AI roadmap updates</p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Your email" required>
+            <button type="submit" class="btn-subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Quick links</h5>
+            <ul>
+              <li><a href="first-year.html">First Year</a></li>
+              <li><a href="second-year.html">Second Year</a></li>
+              <li><a href="third-year.html">Third Year</a></li>
+              <li><a href="fourth-year.html">Fourth Year</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Resources</h5>
+            <ul>
+              <li><a href="#">Certificates</a></li>
+              <li><a href="#">Resume builder</a></li>
+              <li><a href="#">University hub</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <ul>
+              <li><a href="mailto:hello@airoadmap.com">hello@airoadmap.com</a></li>
+              <li><a href="#">+1 (800) 456-7890</a></li>
+            </ul>
+            <div class="social-icons">
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AI Engineering Roadmap. All rights reserved. Built for future engineers.</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- RESUME BUILDER MODAL -->
+  <div id="resume-modal" class="modal">
+    <div class="modal-content glass-header">
+      <div class="modal-header">
+        <h2><i class="fas fa-file-alt"></i> Resume Builder</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="resume-layout">
+          <div class="resume-form">
+            <h3>Your details</h3>
+            <form id="resume-form">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="full-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="phone" placeholder="+1 234 567 890">
+              </div>
+              <div class="form-group">
+                <label>Current Year</label>
+                <select id="current-year">
+                  <option value="1">First Year</option>
+                  <option value="2">Second Year</option>
+                  <option value="3">Third Year</option>
+                  <option value="4">Fourth Year</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Education</label>
+                <textarea id="education" placeholder="B.Tech AI, XYZ University, CGPA: 8.5"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Skills (comma separated)</label>
+                <input type="text" id="skills" placeholder="Python, TensorFlow, DSA">
+              </div>
+              <div class="form-group">
+                <label>Projects</label>
+                <textarea id="projects" placeholder="1. AI chatbot built with ..."></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="generate-resume">Generate Preview</button>
+                <button type="button" class="btn btn-secondary" id="download-pdf">Download PDF</button>
+                <button type="button" class="btn btn-outline" id="clear-form">Clear</button>
+              </div>
+            </form>
+          </div>
+          <div class="resume-preview">
+            <h3>Resume preview</h3>
+            <div id="preview-content" class="preview-card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/certificates.js"></script>
+  <script src="js/resume-builder.js"></script>
+  <script src="js/year-pages.js"></script>
 </body>
 </html>

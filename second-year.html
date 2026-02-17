@@ -1,511 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Second Year - TechPath</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #10b981;
-            --secondary: #059669;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-        }
-
-        header {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 1.5rem 0;
-            box-shadow: var(--shadow);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo i {
-            font-size: 2.5rem;
-        }
-
-        .logo-text h1 {
-            font-size: 2rem;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-5px);
-        }
-
-        .year-hero {
-            padding: 4rem 0;
-            text-align: center;
-            background: linear-gradient(rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
-        }
-
-        .year-hero h2 {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .year-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--gray);
-        }
-
-        .subjects-section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .subject-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            box-shadow: var(--shadow);
-            border-left: 6px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .subject-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .subject-card h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .resource-links {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .resource-links li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .resource-links li:hover {
-            background: var(--light);
-            padding-left: 10px;
-            color: var(--primary);
-        }
-
-        .resource-links li i {
-            color: var(--primary);
-            font-size: 1.2rem;
-            width: 24px;
-        }
-
-        .career-section {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 4rem 0;
-            box-shadow: var(--shadow);
-        }
-
-        .career-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .career-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid var(--light-gray);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .career-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .career-card h4 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .certifications-section {
-            padding: 4rem 0;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .cert-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .free-badge, .paid-badge {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .free-badge {
-            background: #10b981;
-            color: white;
-        }
-
-        .paid-badge {
-            background: #f59e0b;
-            color: white;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .subjects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .year-hero h2 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .career-grid, .cert-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Second Year Roadmap | AI Engineering</title>
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/32/10b981/ffffff?text=AI">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/second-year.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="index.html">
-                        <i class="fas fa-robot"></i>
-                        <div class="logo-text">
-                            <h1>TechPath</h1>
-                            <p>Second Year Roadmap</p>
-                        </div>
-                    </a>
-                </div>
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Back to Home
-                </a>
-            </div>
-        </div>
-    </header>
+  <canvas id="neural-canvas" class="neural-bg" aria-hidden="true"></canvas>
+  
+  <header class="header glass-header">
+    <div class="container header-container">
+      <div class="logo">
+        <i class="fas fa-robot"></i>
+        <span>AI Roadmap<span class="dot">.</span></span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="navbar" id="navbar">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="first-year.html" class="nav-link">First Year</a></li>
+          <li><a href="second-year.html" class="nav-link active">Second Year</a></li>
+          <li><a href="third-year.html" class="nav-link">Third Year</a></li>
+          <li><a href="fourth-year.html" class="nav-link">Fourth Year</a></li>
+          <li><a href="#" class="nav-link" id="resume-trigger">Resume Builder</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section class="year-hero">
-        <div class="container">
-            <h2>Second Year Complete Roadmap</h2>
-            <p>Master Data Structures, Machine Learning, and Full Stack Development. Build professional profiles and prepare for internships.</p>
-        </div>
+  <main>
+    <section class="year-hero second-year-hero">
+      <div class="container">
+        <h1 class="gradient-text-second">Second Year <span>Engineering</span></h1>
+        <p>Master Machine Learning, DSA, DBMS, Full-Stack and accelerate your career with professional guides.</p>
+      </div>
     </section>
 
-    <section class="subjects-section">
-        <div class="container">
-            <h2 class="section-title">Core Subjects & Resources</h2>
-            <div class="subjects-grid">
-                <!-- Machine Learning -->
-                <div class="subject-card">
-                    <h3>Machine Learning</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=machine+learning+full+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube Full Course
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/machine-learning/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks ML
-                        </li>
-                        <li onclick="window.open('https://www.w3schools.com/ai/ai_machine_learning.asp', '_blank')">
-                            <i class="fas fa-graduation-cap"></i> W3Schools ML Guide
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106106049', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL ML Course
-                        </li>
-                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/machine-learning/', '_blank')">
-                            <i class="fas fa-laptop-code"></i> FreeCodeCamp ML
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Data Structures & Algorithms -->
-                <div class="subject-card">
-                    <h3>Data Structures & Algorithms</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=data+structures+and+algorithms+full+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube DSA Course
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/data-structures/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks DSA
-                        </li>
-                        <li onclick="window.open('https://www.w3schools.com/dsa/index.php', '_blank')">
-                            <i class="fas fa-graduation-cap"></i> W3Schools DSA
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106102064', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL Algorithms
-                        </li>
-                        <li onclick="window.open('https://www.freecodecamp.org/news/learn-data-structures-and-algorithms/', '_blank')">
-                            <i class="fas fa-laptop-code"></i> FreeCodeCamp DSA
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Java Programming -->
-                <div class="subject-card">
-                    <h3>Java Programming</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=java+programming+full+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube Java Course
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/java/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks Java
-                        </li>
-                        <li onclick="window.open('https://www.w3schools.com/java/', '_blank')">
-                            <i class="fas fa-graduation-cap"></i> W3Schools Java
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106105191', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL Java
-                        </li>
-                        <li onclick="window.open('https://www.freecodecamp.org/news/learn-java-free-java-courses-for-beginners/', '_blank')">
-                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Java
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Database Management Systems -->
-                <div class="subject-card">
-                    <h3>DBMS</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=database+management+system+full+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube DBMS Course
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/dbms/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks DBMS
-                        </li>
-                        <li onclick="window.open('https://www.w3schools.com/sql/', '_blank')">
-                            <i class="fas fa-graduation-cap"></i> W3Schools SQL
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106105175', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL DBMS
-                        </li>
-                        <li onclick="window.open('https://www.freecodecamp.org/news/sql-and-databases-full-course/', '_blank')">
-                            <i class="fas fa-laptop-code"></i> FreeCodeCamp SQL
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Full Stack Development-1 -->
-                <div class="subject-card">
-                    <h3>Full Stack Development-1</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=full+stack+web+development+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube Full Stack
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/web-technology/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks Web Dev
-                        </li>
-                        <li onclick="window.open('https://www.w3schools.com/whatis/', '_blank')">
-                            <i class="fas fa-graduation-cap"></i> W3Schools Full Stack
-                        </li>
-                        <li onclick="window.open('https://www.freecodecamp.org/news/tag/full-stack/', '_blank')">
-                            <i class="fas fa-laptop-code"></i> FreeCodeCamp Full Stack
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106105167', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL Web Tech
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Theory of Computation -->
-                <div class="subject-card">
-                    <h3>Theory of Computation</h3>
-                    <ul class="resource-links">
-                        <li onclick="window.open('https://www.youtube.com/results?search_query=theory+of+computation+full+course', '_blank')">
-                            <i class="fab fa-youtube"></i> YouTube ToC Course
-                        </li>
-                        <li onclick="window.open('https://www.geeksforgeeks.org/theory-of-computation/', '_blank')">
-                            <i class="fas fa-book"></i> GeeksforGeeks ToC
-                        </li>
-                        <li onclick="window.open('https://nptel.ac.in/courses/106106049', '_blank')">
-                            <i class="fas fa-university"></i> NPTEL ToC
-                        </li>
-                    </ul>
-                </div>
+    <section class="subjects">
+      <div class="container">
+        <h2 class="section-title">📚 Core Subjects</h2>
+        <div class="subject-grid">
+          <!-- Machine Learning -->
+          <div class="subject-card" data-subject="Machine Learning">
+            <h3><i class="fas fa-robot"></i> Machine Learning</h3>
+            <div class="resources">
+              <a href="https://youtube.com/playlist?list=PLxCzCOWd7aiEXg5BV10k9THtjnS48yI-T&si=zaYQf0wS8cjWtc5O" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
             </div>
-
-            <div class="career-section">
-                <h2 class="section-title">Career Development Guides</h2>
-                <div class="career-grid">
-                    <div class="career-card" onclick="window.open('https://www.youtube.com/results?search_query=github+profile+building+for+students', '_blank')">
-                        <h4><i class="fab fa-github"></i> GitHub Profile Building</h4>
-                        <p>Learn how to create an impressive GitHub profile with projects, contributions, and proper documentation.</p>
-                    </div>
-                    
-                    <div class="career-card" onclick="window.open('https://www.youtube.com/results?search_query=linkedin+profile+optimization+for+students', '_blank')">
-                        <h4><i class="fab fa-linkedin"></i> LinkedIn Optimization</h4>
-                        <p>Optimize your LinkedIn profile for internships and job opportunities with proper formatting and keywords.</p>
-                    </div>
-                    
-                    <div class="career-card" onclick="window.open('https://www.youtube.com/results?search_query=developer+portfolio+website+building', '_blank')">
-                        <h4><i class="fas fa-briefcase"></i> Portfolio Development</h4>
-                        <p>Build a professional portfolio website to showcase your projects, skills, and achievements.</p>
-                    </div>
-                    
-                    <div class="career-card" onclick="window.open('https://www.youtube.com/results?search_query=open+source+contribution+for+beginners', '_blank')">
-                        <h4><i class="fas fa-code-branch"></i> Open Source Contribution</h4>
-                        <p>Learn how to contribute to open source projects and build your reputation in the developer community.</p>
-                    </div>
-                </div>
+            <div class="certificates" id="cert-MachineLearning"></div>
+          </div>
+          
+          <!-- Data Structures & Algorithms -->
+          <div class="subject-card" data-subject="Data Structures & Algorithms">
+            <h3><i class="fas fa-sitemap"></i> Data Structures & Algorithms</h3>
+            <div class="resources">
+              <a href="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
             </div>
-
-            <div class="certifications-section">
-                <h2 class="section-title">Recommended Certifications</h2>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <h4>Free Certifications <span class="free-badge">FREE</span></h4>
-                        <ul style="list-style: none; margin-bottom: 1.5rem;">
-                            <li onclick="window.open('https://www.coursera.org/learn/machine-learning', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
-                                <i class="fas fa-external-link-alt"></i> Machine Learning - Andrew Ng
-                            </li>
-                            <li onclick="window.open('https://www.coursera.org/professional-certificates/ibm-data-science', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
-                                <i class="fas fa-external-link-alt"></i> IBM Data Science
-                            </li>
-                            <li onclick="window.open('https://www.coursera.org/specializations/deep-learning', '_blank')" style="padding: 0.8rem 0; cursor: pointer;">
-                                <i class="fas fa-external-link-alt"></i> Deep Learning Specialization
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="cert-card">
-                        <h4>Paid Certifications <span class="paid-badge">PAID</span></h4>
-                        <ul style="list-style: none; margin-bottom: 1.5rem;">
-                            <li onclick="window.open('https://aws.amazon.com/certification/certified-machine-learning-specialty/', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
-                                <i class="fas fa-external-link-alt"></i> AWS Machine Learning
-                            </li>
-                            <li onclick="window.open('https://www.tensorflow.org/certificate', '_blank')" style="padding: 0.8rem 0; cursor: pointer; border-bottom: 1px solid var(--light-gray);">
-                                <i class="fas fa-external-link-alt"></i> TensorFlow Developer
-                            </li>
-                            <li onclick="window.open('https://www.udemy.com/course/the-complete-java-development-bootcamp/', '_blank')" style="padding: 0.8rem 0; cursor: pointer;">
-                                <i class="fas fa-external-link-alt"></i> Java Development Bootcamp
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="certificates" id="cert-DSA"></div>
+          </div>
+          
+          <!-- Java Programming -->
+          <div class="subject-card" data-subject="Java Programming">
+            <h3><i class="fab fa-java"></i> Java Programming</h3>
+            <div class="resources">
+              <a href="https://youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop&si=S5Yqj6vVQszSreJS" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
             </div>
+            <div class="certificates" id="cert-Java"></div>
+          </div>
+          
+          <!-- Theory of Computation -->
+          <div class="subject-card" data-subject="TOC">
+            <h3><i class="fas fa-calculator"></i> Theory of Computation</h3>
+            <div class="resources">
+              <a href="https://youtube.com/playlist?list=PLxCzCOWd7aiFM9Lj5G9G_76adtyb4ef7i&si=JTBX-aiGNfPHuDww" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
+            </div>
+            <div class="certificates" id="cert-TOC"></div>
+          </div>
+          
+          <!-- Database Management Systems -->
+          <div class="subject-card" data-subject="DBMS">
+            <h3><i class="fas fa-database"></i> Database Management Systems</h3>
+            <div class="resources">
+              <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe1wRkDkQ0m1lJ7KDpTNRuvj" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
+            </div>
+            <div class="certificates" id="cert-DBMS"></div>
+          </div>
+          
+          <!-- Advanced DSA -->
+          <div class="subject-card" data-subject="Advanced DSA">
+            <h3><i class="fas fa-chart-line"></i> Advanced DSA</h3>
+            <div class="resources">
+              <a href="https://youtube.com/playlist?list=PLv9sD0fPjvSHqIOLTIvHJWjkdH0IdzmXT&si=MEmxNkLcsmA7SIgM" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
+            </div>
+            <div class="certificates" id="cert-AdvancedDSA"></div>
+          </div>
+          
+          <!-- Full Stack Development-1 -->
+          <div class="subject-card" data-subject="Full Stack Development-1">
+            <h3><i class="fas fa-layer-group"></i> Full Stack Development-1</h3>
+            <div class="resources">
+              <a href="https://youtube.com/playlist?list=PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i&si=XNOM8DDdxFnr56s4" class="resource-link youtube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="#" class="resource-link notes"><i class="fas fa-file-alt"></i> Notes</a>
+            </div>
+            <div class="certificates" id="cert-FullStack1"></div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 TechPath - Second Year Roadmap</p>
-            <p style="margin-top: 1rem; color: #94a3b8;">Click on any resource link to access free learning materials</p>
+    <section class="guides">
+      <div class="container">
+        <h2 class="section-title">🚀 Career Acceleration Guides</h2>
+        <div class="guides-grid">
+          <div class="guide-card">
+            <i class="fab fa-github"></i>
+            <h3>GitHub Profile Guide</h3>
+            <p>Build a standout open-source portfolio.</p>
+            <a href="https://youtu.be/Ez8F0nW6S-w?si=Wx1QKPI4iQiffHhP" class="guide-link" target="_blank" rel="noopener">Watch tutorial →</a>
+          </div>
+          <div class="guide-card">
+            <i class="fab fa-linkedin"></i>
+            <h3>LinkedIn Optimization</h3>
+            <p>Get noticed by recruiters and hiring managers.</p>
+            <a href="https://youtu.be/lzuiuRgwwrc?si=jgREcmLp4Fdcl4qH" class="guide-link" target="_blank" rel="noopener">Watch tutorial →</a>
+          </div>
+          <div class="guide-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Portfolio Guide</h3>
+            <p>Create a stunning personal website.</p>
+            <a href="https://youtu.be/oFnIe-RpkE4?si=CoNoX7qWVf6mIe1Z" class="guide-link" target="_blank" rel="noopener">Watch tutorial →</a>
+          </div>
+          <div class="guide-card">
+            <i class="fas fa-code-branch"></i>
+            <h3>Open Source Guide</h3>
+            <p>From first PR to becoming a maintainer.</p>
+            <a href="#" class="guide-link">Coming soon →</a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Make all cards clickable
-        document.querySelectorAll('.resource-links li, .career-card').forEach(item => {
-            item.style.cursor = 'pointer';
-        });
-    </script>
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Get weekly AI roadmap updates</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit" class="btn-subscribe"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Quick links</h5>
+          <ul>
+            <li><a href="first-year.html">First Year</a></li>
+            <li><a href="second-year.html">Second Year</a></li>
+            <li><a href="third-year.html">Third Year</a></li>
+            <li><a href="fourth-year.html">Fourth Year</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Certificates</a></li>
+            <li><a href="#">Resume builder</a></li>
+            <li><a href="#">University hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:hello@airoadmap.com">hello@airoadmap.com</a></li>
+          </ul>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 AI Engineering Roadmap</p>
+    </div>
+  </footer>
+
+  <!-- Resume Modal -->
+  <div id="resume-modal" class="modal">
+    <div class="modal-content glass-header">
+      <div class="modal-header">
+        <h2><i class="fas fa-file-alt"></i> Resume Builder</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="resume-layout">
+          <div class="resume-form">
+            <form id="resume-form">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="full-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="phone" placeholder="+1 234 567 890">
+              </div>
+              <div class="form-group">
+                <label>Current Year</label>
+                <select id="current-year">
+                  <option value="1">First Year</option>
+                  <option value="2">Second Year</option>
+                  <option value="3">Third Year</option>
+                  <option value="4">Fourth Year</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Education</label>
+                <textarea id="education" placeholder="B.Tech AI, XYZ University, CGPA: 8.5"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Skills</label>
+                <input type="text" id="skills" placeholder="Python, TensorFlow, DSA">
+              </div>
+              <div class="form-group">
+                <label>Projects</label>
+                <textarea id="projects" placeholder="1. AI chatbot built with ..."></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="generate-resume">Generate</button>
+                <button type="button" class="btn btn-secondary" id="download-pdf">PDF</button>
+                <button type="button" class="btn btn-outline" id="clear-form">Clear</button>
+              </div>
+            </form>
+          </div>
+          <div class="resume-preview">
+            <h3>Preview</h3>
+            <div id="preview-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/certificates.js"></script>
+  <script src="js/resume-builder.js"></script>
+  <script src="js/year-pages.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subjects = [
+        'Machine Learning', 
+        'Data Structures & Algorithms', 
+        'Java Programming', 
+        'TOC', 
+        'DBMS', 
+        'Advanced DSA', 
+        'Full Stack Development-1'
+      ];
+      subjects.forEach(s => {
+        if (typeof showCertificates === 'function') {
+          showCertificates(s);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
